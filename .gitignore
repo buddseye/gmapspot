@@ -1,5 +1,8 @@
 output/
 run.sh
+*.json
+*.gz
+*.tsv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
