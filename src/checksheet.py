@@ -2,7 +2,6 @@
 
 import sys
 import csv
-import codecs
 
 OUTPUT_FIELDNAMES = [
     "index",

@@ -3,6 +3,7 @@ run.sh
 *.json
 *.gz
 *.tsv
+*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

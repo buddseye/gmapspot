@@ -55,6 +55,7 @@ def add_search_spot(gmaps, row):
 def main():
     reader = csv.DictReader(sys.stdin, delimiter="\t")
     output_fieldnames = list(deepcopy(reader.fieldnames))
+    output_fieldnames.append("spot")
     output_fieldnames.append("search_spot")
     writer = csv.DictWriter(sys.stdout,
                             delimiter="\t",
@@ -65,8 +66,7 @@ def main():
     gmaps = GoogleMaps(MAPS_JAVASCRIPT_API)
     i = 0
     for r in reader:
-        # writer.writerow(add_search_spot(gmaps, add_near_spot(gmaps, r)))
-        writer.writerow(add_search_spot(gmaps, r))
+        writer.writerow(add_search_spot(gmaps, add_near_spot(gmaps, r)))
         i += 1
         time.sleep(30)
 
