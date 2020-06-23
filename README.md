@@ -1,6 +1,13 @@
 # gmapspot
 This is a tool that convert `scrape47` output to `quiz47` quiz data.
 
+## Convert Flow
+```
+scrape -> gmaps -------------------------------------------------> spot
+                 \                                             /
+                  -> checksheet -(direct change)-> checksheet -
+```
+
 ## Usage
 ```bash
 # Please set your google maps api key.
