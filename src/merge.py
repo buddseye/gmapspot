@@ -34,12 +34,14 @@ def merge_dict(base, target):
     '''
     >>> merge_dict({'a': 1, 'b': 2}, {'b': 3, 'd': 4})
     {'a': 1, 'b': 3, 'd': 4}
-    >>> merge_dict({'a': 1, 'id': 2}, {'id': 3, 'index': 4, 'e': 5})
+    >>> merge_dict({'a': 1, 'b': 2}, {'id': 3, 'index': 4, 'e': 5})
+    {'a': 1, 'b': 2, 'e': 5}
+    >>> merge_dict({'a': 1, 'id': 2}, {'': 4, 'e': 5})
     {'a': 1, 'id': 2, 'e': 5}
     '''
     merge_data = deepcopy(base)
     for k, v in target.items():
-        if k in ('id', 'index'):
+        if k in ('id', 'index', ''):
             continue
         merge_data[k] = v
     return merge_data
@@ -52,7 +54,10 @@ def main():
     import_first_row = next(iter(import_dict.values()))
     output_fieldnames = product_list(reader.fieldnames,
                                      import_first_row.keys())
-    writer = csv.DictWriter(sys.stdout, fieldnames=output_fieldnames)
+    writer = csv.DictWriter(sys.stdout,
+                            fieldnames=output_fieldnames,
+                            delimiter='\t')
+    writer.writeheader()
     for r in reader:
         target_data = match_import_data(import_dict, r["id"])
         outdict = merge_dict(r, target_data)

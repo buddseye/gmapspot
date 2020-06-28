@@ -1,5 +1,4 @@
 {
-    "python.pythonPath": "/home/shun/.local/share/virtualenvs/gmapspot-w55512su/bin/python",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true

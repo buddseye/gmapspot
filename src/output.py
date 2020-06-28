@@ -69,11 +69,16 @@ def convert_json():
     outputf = sys.stdout
     reader = csv.DictReader(inputf, delimiter="\t")
     quizzes = []
+
     for row in reader:
+        if row['spottitle'] == '':
+            continue
         quizzes.append({
             "url": row["url"],
             "thumburl": row["thumb_url"],
-            "title": row["title"],
+            "photo-title": row["title"],
+            "title": row["spottitle"],
+            "subtitle": row["subtitle"],
             "lat": float(row["lat"]),
             "lon": float(row["lon"]),
             "selections": get_selection(row["prefecture_code"]),
