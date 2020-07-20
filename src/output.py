@@ -76,11 +76,13 @@ def convert_json():
         quizzes.append({
             "url": row["url"],
             "thumburl": row["thumb_url"],
-            "photo-title": row["title"],
+            "phototitle": row["title"],
             "title": row["spottitle"],
+            "photographer": row["photographer"],
             "subtitle": row["subtitle"],
             "lat": float(row["lat"]),
             "lon": float(row["lon"]),
+            "place_id": row["place_id"],
             "selections": get_selection(row["prefecture_code"]),
             "description": row["description"],
         })
