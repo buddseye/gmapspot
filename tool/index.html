@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <v-app>
+        <v-content>
+          <v-container fluid>
+            <v-row>
+              <v-col md="9">
+                <v-row>
+                  <v-col cols="12" md="5">
+                    <v-row>
+                      <v-col md="2">
+                        <v-btn small v-on:click="index -= 1">Back</v-btn>
+                      </v-col>
+                      <v-col md="3">
+                        <v-text-field label="Set ID and Enter." v-model="index"
+                          >0</v-text-field
+                        >
+                      </v-col>
+                      <v-col md="2">
+                        <v-btn small v-on:click="index += 1">Next</v-btn>
+                      </v-col>
+                      <v-col md="5" class="font-weight-black">
+                        {{ spots[index]["title"] }}
+                      </v-col>
+                    </v-row>
+                    <v-img
+                      :src="spots[index]['thumb_url']"
+                      aspect-ratio="1.7"
+                    ></v-img>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="7">
+                    <iframe
+                      :src="'https://www.google.com/maps?q='+spots[index]['lat']+','+spots[index]['lon']+'&output=embed&t=m&z=10&hl=ja'"
+                      height="380"
+                      width="100%"
+                      frameborder="0"
+                      style="border: 0;"
+                      allowfullscreen
+                      aria-hidden="false"
+                      tabindex="0"
+                    ></iframe>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12" md="12">
+                    <v-simple-table>
+                      <template v-slot:default>
+                        <thead>
+                          <tr>
+                            <th class="text-left">Priority</th>
+                            <th class="text-left">Name</th>
+                            <th class="text-left">Address</th>
+                            <th class="text-left">Category</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+                            <tr>
+                              <td>最寄りスポット1</td>
+                              <td><a :href="'https://www.google.com/maps/place/?q=place_id:'+spots[index]['spot1_place_id']">{{ spots[index]['spot1_name'] }}</a></td>
+                              <td>{{ spots[index]['spot1_address'] }}</td>
+                              <td>{{ spots[index]['spot1_type'] }}</td>
+                            </tr>
+                          
+                            <tr>
+                              <td>最寄りスポット2</td>
+                              <td><a :href="'https://www.google.com/maps/place/?q=place_id:'+spots[index]['spot2_place_id']">{{ spots[index]['spot2_name'] }}</a></td>
+                              <td>{{ spots[index]['spot2_address'] }}</td>
+                              <td>{{ spots[index]['spot2_type'] }}</td>
+                            </tr>
+                            <tr>
+                              <td>タイトル検索スポット1</td>
+                              <td><a :href="'https://www.google.com/maps/place/?q=place_id:'+spots[index]['spot3_place_id']">{{ spots[index]['spot3_name'] }}</a></td>
+                              <td>{{ spots[index]['spot3_address'] }}</td>
+                              <td>{{ spots[index]['spot3_type'] }}</td>
+                            </tr>
+                          </a>
+                        </tbody>
+                      </template>
+                    </v-simple-table>
+                  </v-col>
+                </v-row></v-col
+              >
+              <v-col md="3">
+                <iframe
+                  :src="'https://www.google.com/maps?q='+spots[index]['spot1_lat']+','+spots[index]['spot1_lon']+'&output=embed&t=m&z=12&hl=ja'"
+                  height="200"
+                  width="100%"
+                  frameborder="0"
+                  style="border: 0;"
+                  allowfullscreen
+                  aria-hidden="false"
+                  tabindex="0"
+                ></iframe>
+                <iframe
+                  :src="'https://www.google.com/maps?q='+spots[index]['spot2_lat']+','+spots[index]['spot2_lon']+'&output=embed&t=m&z=12&hl=ja'"
+                  height="200"
+                  width="100%"
+                  frameborder="0"
+                  style="border: 0;"
+                  allowfullscreen
+                  aria-hidden="false"
+                  tabindex="0"
+                ></iframe>
+                <iframe
+                  :src="'https://www.google.com/maps?q='+spots[index]['spot3_lat']+','+spots[index]['spot3_lon']+'&output=embed&t=m&z=12&hl=ja'"
+                  height="200"
+                  width="100%"
+                  frameborder="0"
+                  style="border: 0;"
+                  allowfullscreen
+                  aria-hidden="false"
+                  tabindex="0"
+                ></iframe>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-content>
+      </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      import spots from "../check-spots.json"
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+        data: {
+          index: 0,
+          spots: spots
+        }
+      })
+    </script>
+  </body>
+</html>
+

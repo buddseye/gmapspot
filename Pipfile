@@ -9,6 +9,9 @@ autopep8 = "*"
 
 [packages]
 googlemaps = "*"
+jinja2 = "*"
+flake8 = "*"
+rope = "*"
 
 [requires]
 python_version = "3.8"
